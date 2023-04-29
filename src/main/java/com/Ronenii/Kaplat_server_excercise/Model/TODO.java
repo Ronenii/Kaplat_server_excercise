@@ -1,11 +1,5 @@
 package com.Ronenii.Kaplat_server_excercise.Model;
 
-enum eStatus
-{
-    PENDING,
-    LATE,
-    DONE
-}
 public class TODO {
     static private int idCount = 1;
     private int id;
@@ -13,8 +7,7 @@ public class TODO {
     private long dueDate;
     private eStatus Status;
 
-    public TODO(String Title, String Content, long dueDate)
-    {
+    public TODO(String Title, String Content, long dueDate) {
         this.id = idCount++;
         this.Title = Title;
         this.Content = Content;
@@ -22,12 +15,14 @@ public class TODO {
         this.Status = eStatus.PENDING;
         System.out.print(this);
     }
-    public String toString(){
+
+    public String toString() {
         return "TODO(id=" + id +
                 ", Title=" + this.Title +
                 ", Content=" + this.Content +
                 ", DueDate=" + this.dueDate +
-                ", Status=" + this.Status + ")";}
+                ", Status=" + this.Status + ")";
+    }
 
     public static int getIdCount() {
         return idCount;
