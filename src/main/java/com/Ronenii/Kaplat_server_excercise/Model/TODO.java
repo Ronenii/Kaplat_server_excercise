@@ -40,6 +40,8 @@ public class TODO {
         this.id = id;
     }
 
+    public static void revokeId() {idCount--;}
+
     public void giveId() {
         this.id = idCount++;
     }

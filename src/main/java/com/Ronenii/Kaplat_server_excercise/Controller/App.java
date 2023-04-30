@@ -54,10 +54,12 @@ public class App {
             result.setErrorMessage("Error: TODO with the title " + todo.getTitle() + " already exists in the system");
             System.out.println(result.getErrorMessage());
             responseStatus = HttpStatus.CONFLICT;
+            TODO.revokeId();
         } else if (!TodoHasCorrectTime(todo)) {
             result.setErrorMessage("Error: Can’t create new TODO that its due date is in the past");
             System.out.println(result.getErrorMessage());
             responseStatus = HttpStatus.CONFLICT;
+            TODO.revokeId();
         } else {
             // add the to-do to the to-do array.
             responseStatus = HttpStatus.OK;
@@ -82,7 +84,7 @@ public class App {
 
     // check if the to-do has a valid dueDate
     public boolean TodoHasCorrectTime(TODO todo) {
-        return java.lang.System.currentTimeMillis() >= todo.getDueDate();
+        return java.lang.System.currentTimeMillis() <= todo.getDueDate();
     }
 
     /**
@@ -281,7 +283,7 @@ public class App {
         StringBuilder errorMessage = new StringBuilder();
 
         if (!isValidStatus(status)) {
-            throw new IllegalArgumentException(status);
+            throw new IllegalArgumentException(invalidParameterMessage(status));
         }
         eStatus newStatus = eStatus.valueOf(status);
         String oldStatus;
